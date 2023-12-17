@@ -5,7 +5,7 @@ class Activator:
             setattr(self, key, value)\
             
     @classmethod
-    def activators_from_json(cls, activators_json: list):
+    def dict_from_json(cls, activators_json: list):
         """Converts a list of activators into a dict of activators, using call sing as key"""
         activators = {}
         for activator_json in activators_json:

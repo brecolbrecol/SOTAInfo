@@ -3,7 +3,7 @@ import json
 import pathlib
 import traceback
 import urllib.request
-import lib.Activator
+from lib.Activator import Activator
 
 
 class SOTAInfo(object):
@@ -28,14 +28,14 @@ class SOTAInfo(object):
         if (cache_file_path.exists()):
             with cache_file_path.open(mode="r", encoding="utf-8") as f_activators:
                 try:
-                    return json.load(f_activators)
+                    return Activator.dict_from_json(json.load(f_activators))
                 except Exception:
                     traceback.print_exc()
 
         activators = self.fetch_activators()
         with cache_file_path.open(mode="w", encoding="utf-8") as f_activators:
             json.dump(activators, f_activators, indent=2)
-        return activators
+        return Activator.dict_from_json(activators)
 
     def fetch_activators(self):
         print("Fetching association " + str(self.associationID) + " call signs...", end='')
