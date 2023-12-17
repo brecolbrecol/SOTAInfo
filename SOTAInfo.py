@@ -47,4 +47,6 @@ class SOTAInfo(object):
 
 if __name__ == "__main__":
     cumbres_activadas = SOTAInfo()
-    datos = cumbres_activadas.Activators
+    data = cumbres_activadas.Activators
+    ea4hfo = data['EA4HFO']
+    print(ea4hfo.Points)
