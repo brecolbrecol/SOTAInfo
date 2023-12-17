@@ -3,6 +3,7 @@ import json
 import pathlib
 import traceback
 import urllib.request
+import lib.Activator
 
 
 class SOTAInfo(object):
