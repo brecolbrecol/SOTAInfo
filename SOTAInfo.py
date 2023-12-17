@@ -17,8 +17,7 @@ class SOTAInfo(object):
     @property
     def Activators(self):
         """
-        {'Position', 'UserID', 'Callsign', 'Username', 'Points', 'BonusPoints', 'Summits', 'totalPoints', 'Average'}
-        :return: json 
+        Dict of Activator {'Position', 'UserID', 'Callsign', 'Username', 'Points', 'BonusPoints', 'Summits', 'totalPoints', 'Average'}
         """
         return self._activators
 
