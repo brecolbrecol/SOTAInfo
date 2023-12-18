@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 from lib.SOTAInfo import SOTAInfo
+
 
 if __name__ == "__main__":
     cumbres_activadas = SOTAInfo()
