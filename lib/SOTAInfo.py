@@ -2,7 +2,7 @@ import json
 import pathlib
 import traceback
 import urllib.request
-from Activator import Activator
+from lib.Activator import Activator
 
 
 class SOTAInfo(object):
