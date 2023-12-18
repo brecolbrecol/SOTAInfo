@@ -9,7 +9,7 @@ def activators_christmas():
     return ["EA4GDK","EA4GZU","EA4HCF","EA4HGT","EA4DE","EA4HIH","EA4HTO","EA4FUA","EB4FJV","EA4HNQ","EA4HSS","EA4HFO"]
 
 def proposed_references():
-    return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045", "EA1/AV-013", "EA1/SG-019", "EA4/MD-047", "EA1/SG-001", "EA4/MD-052"]
+    return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045", "EA1/AV-013", "EA1/SG-019", "EA4/MD-047", "EA1/SG-001", "EA4/MD-052","EA4/MD-053","EA4/MD-019","EA4/MD-028","EA4/MD-029","EA4/MD-012"]
 
 if __name__ == "__main__":
     summits_count = {}
