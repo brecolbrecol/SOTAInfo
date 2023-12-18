@@ -3,11 +3,10 @@ import json
 import pathlib
 import traceback
 import urllib.request
-from lib.Activator import Activator
+from Activator import Activator
 
 
 class SOTAInfo(object):
-
     def __init__(self, cache_dir: str = "/tmp/SOTAInfo/", associationID: int = 48):
         pathlib.Path(cache_dir).mkdir(parents=True, exist_ok=True)  # ensures tempdir exists
         self.cache_dir = cache_dir
@@ -42,10 +41,3 @@ class SOTAInfo(object):
                                           str(self.associationID)).read()
         print(" done!")
         return json.loads(api_data.decode('utf-8'))
-
-
-if __name__ == "__main__":
-    cumbres_activadas = SOTAInfo()
-    data = cumbres_activadas.Activators
-    ea4hfo = data['EA4HFO']
-    print(ea4hfo.Points)

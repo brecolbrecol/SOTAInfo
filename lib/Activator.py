@@ -3,17 +3,16 @@ import json
 
 class Activator:
     def __init__(self, attributes: dict):
-        self._summits = None
+        self._activated_summits = None
         for key, value in attributes.items():
             #ToDo: search for specific attributes
             # {'Position', 'UserID', 'Callsign', 'Username', 'Points', 'BonusPoints', 'Summits', 'totalPoints', 'Average'}
             setattr(self, key, value)
 
-    @property
-    def summits(self, year: int = None):
-        if self._summits is None:
-            self._summits = self.fetch_summits(year)
-        return self._summits
+    def activated_references(self, year: int = None):
+        if self._activated_summits is None:
+            self._activated_summits = self.fetch_summits(year)
+        return self._activated_summits
 
     def fetch_summits(self, year: int = None):
         msg = "Fetching summits activated by " + self.Callsign
