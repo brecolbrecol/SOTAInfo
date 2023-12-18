@@ -9,7 +9,7 @@ def activators_christmas():
     return ["EA4GDK","EA4GZU","EA4HCF","EA4HGT","EA4DE","EA4HIH","EA4HTO","EA4FUA","EB4FJV","EA4HNQ","EA4HSS","EA4HFO"]
 
 def proposed_references():
-    return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045"]
+    return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045", "EA1/AV-013", "EA1/SG-019", "EA4/MD-047", "EA1/SG-001", "EA4/MD-052"]
 
 if __name__ == "__main__":
     summits_count = {}
@@ -34,4 +34,4 @@ if __name__ == "__main__":
     print("\n== Results ==")
     for reference, data in sorted(summits_count.items(), key=lambda kv: kv[1]['count']):
         if reference.split()[0] in proposed_references():
-            print(str(data['count']) + " - " + reference + " -> " + data['activators'])
+            print(str(data['count']) + ": " + reference + " -> " + data['activators'])
