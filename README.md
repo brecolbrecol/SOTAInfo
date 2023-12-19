@@ -1,6 +1,7 @@
 ## ToDo
 
-* [ ] Method in Activator to stringify object.
+* [ ] Read activators and proposed summits from file.
+* [ ] Fetch full summit name (reference + common name) from API.
 * [x] Method in Activator to retrieve summits years list for each activator method: `'https://api-db.sota.org.uk/admin/activator_log_by_id?id=45997'`
 * [x] ~~Class~~ Script that:
     * [x] Reads activator candidates from list
