@@ -6,9 +6,10 @@ import argparse
 Given a list of activators and a list of references, count how many times each reference was activated by each activator
 """
 class ActivatedSummits:
-    def __init__(self, year: int = None):
+    def __init__(self, year: int = None, references_file: str = None):
         self._year = year
         self._summits_count = {}
+        self._references_file = references_file
 
     @property
     def year(self):
@@ -26,7 +27,10 @@ class ActivatedSummits:
         return ["EA4GDK","EA4GZU","EA4HCF","EA4HGT","EA4DE","EA4HIH","EA4HTO","EA4FUA","EB4FJV","EA4HNQ","EA4HSS","EA4HFO"]
 
     def proposed_references(self):
-        return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045", "EA1/AV-013", "EA1/SG-019", "EA4/MD-047", "EA1/SG-001", "EA4/MD-052","EA4/MD-053","EA4/MD-019","EA4/MD-028","EA4/MD-029","EA4/MD-012"]
+        if self._references_file is None:
+            return ["EA1/SG-017", "EA1/SG-005", "EA4/MD-017", "EA4/MD-045", "EA1/AV-013", "EA1/SG-019", "EA4/MD-047", "EA1/SG-001", "EA4/MD-052","EA4/MD-053","EA4/MD-019","EA4/MD-028","EA4/MD-029","EA4/MD-012"]
+        with open(self._references_file, 'r') as file:
+            return [line.strip() for line in file.readlines()]
 
     def run(self):
         sota_info = SOTAInfo()
@@ -48,12 +52,12 @@ class ActivatedSummits:
                 print(activator + " not found in SOTA database")
     
     def print_results(self):
-        never_activated_references = self.proposed_references()
+        never_activated_references = [item.split()[0] for item in self.proposed_references()]
         print("\n== Results ==")
 
         for summit_name, data in sorted(self.summits_count.items(), key=lambda kv: kv[1]['count']):
             reference = summit_name.split()[0]
-            if reference in self.proposed_references():
+            if any(proposed_reference.split()[0].upper() == reference.upper() for proposed_reference in self.proposed_references()):
                 print(str(data['count']) + ": " + summit_name + " -> " + data['activators'])
                 never_activated_references.remove(reference)
                 #print("\t<option value=\"" + summit_name + "\">")
@@ -64,8 +68,9 @@ class ActivatedSummits:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Count activations of summit list by given call signs.')
     parser.add_argument('--year', type=int, help='Retrieve only summits activated on year (defaults to current year)')
+    parser.add_argument('--references', type=str, help='File with summits references')
     args = parser.parse_args()
 
-    activated_summits = ActivatedSummits(year=args.year)
+    activated_summits = ActivatedSummits(year=args.year, references_file=args.references)
     activated_summits.run()
     activated_summits.print_results()
