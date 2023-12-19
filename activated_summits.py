@@ -48,11 +48,18 @@ class ActivatedSummits:
                 print(activator + " not found in SOTA database")
     
     def print_results(self):
+        never_activated_references = self.proposed_references()
         print("\n== Results ==")
-        for reference, data in sorted(self.summits_count.items(), key=lambda kv: kv[1]['count']):
-            if reference.split()[0] in self.proposed_references():
-                print(str(data['count']) + ": " + reference + " -> " + data['activators'])
 
+        for summit_name, data in sorted(self.summits_count.items(), key=lambda kv: kv[1]['count']):
+            reference = summit_name.split()[0]
+            if reference in self.proposed_references():
+                print(str(data['count']) + ": " + summit_name + " -> " + data['activators'])
+                never_activated_references.remove(reference)
+                #print("\t<option value=\"" + summit_name + "\">")
+
+        for never_activated_reference in never_activated_references:
+            print("0: " + never_activated_reference)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Count activations of summit list by given call signs.')
