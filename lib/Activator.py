@@ -10,6 +10,7 @@ class Activator:
             setattr(self, key, value)
 
     def activated_references(self, year: int = None):
+        """year defaults to current year"""
         if self._activated_summits is None:
             self._activated_summits = self.fetch_summits(year)
         return self._activated_summits

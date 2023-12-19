@@ -56,7 +56,7 @@ class ActivatedSummits:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Count activations of summit list by given call signs.')
-    parser.add_argument('--year', type=int, help='Retrieve only summits activated this year')
+    parser.add_argument('--year', type=int, help='Retrieve only summits activated on year (defaults to current year)')
     args = parser.parse_args()
 
     activated_summits = ActivatedSummits(year=args.year)
