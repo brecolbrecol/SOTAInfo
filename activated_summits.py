@@ -6,10 +6,11 @@ import argparse
 Given a list of activators and a list of references, count how many times each reference was activated by each activator
 """
 class ActivatedSummits:
-    def __init__(self, year: int = None, references_file: str = None):
+    def __init__(self, year: int = None, references_file: str = None, activators_file: str = None):
         self._year = year
         self._summits_count = {}
         self._references_file = references_file
+        self._activators_file = activators_file
 
     @property
     def year(self):
@@ -24,7 +25,11 @@ class ActivatedSummits:
         self._summits_count = value
 
     def activators_christmas(self):
-        return ["EA4GDK","EA4GZU","EA4HCF","EA4HGT","EA4DE","EA4HIH","EA4HTO","EA4FUA","EB4FJV","EA4HNQ","EA4HSS","EA4HFO"]
+        if self._activators_file is None:
+            return ["EA4GDK", "EA4GZU", "EA4HCF", "EA4HGT", "EA4DE", "EA4HIH", "EA4HTO", "EA4FUA", "EB4FJV", "EA4HNQ",
+                    "EA4HSS", "EA4HFO"]
+        with open(self._activators_file, 'r') as file:
+            return [line.strip() for line in file.readlines()]
 
     def proposed_references(self):
         if self._references_file is None:
@@ -69,8 +74,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Count activations of summit list by given call signs.')
     parser.add_argument('--year', type=int, help='Retrieve only summits activated on year (defaults to current year)')
     parser.add_argument('--references', type=str, help='File with summits references')
+    parser.add_argument('--activators', type=str, help='File with activator\'s call signs')
     args = parser.parse_args()
 
-    activated_summits = ActivatedSummits(year=args.year, references_file=args.references)
+    activated_summits = ActivatedSummits(year=args.year, references_file=args.references, activators_file=args.activators)
     activated_summits.run()
     activated_summits.print_results()
