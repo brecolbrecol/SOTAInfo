@@ -71,7 +71,7 @@ class ActivatedSummits:
             print("0: " + never_activated_reference)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Count activations of summit list by given call signs.')
+    parser = argparse.ArgumentParser(description='Given a list of activators and a list of references, count how many times each reference was activated by each activator.')
     parser.add_argument('--year', type=int, help='Retrieve only summits activated on year (defaults to current year)')
     parser.add_argument('--references', type=str, help='File with summits references')
     parser.add_argument('--activators', type=str, help='File with activator\'s call signs')
